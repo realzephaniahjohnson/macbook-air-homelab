@@ -6,7 +6,7 @@ Over one weekend I turned it into a 24/7 home server that blocks ads for every d
 
 **Obsolete doesn't mean useless.** An 8 GB laptop from 2013 has more than enough power for a modern homelab.
 
-![The homelab running: CasaOS dashboard, SSH session, AdGuard Home and Uptime Kuma](01-homelab-setup.jpg)
+![The homelab running: CasaOS dashboard, SSH session, AdGuard Home and Uptime Kuma](images/01-homelab-setup.jpg)
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu_Server-26.04_LTS-E95420?logo=ubuntu&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-CasaOS-2496ED?logo=docker&logoColor=white)
@@ -23,8 +23,8 @@ Over one weekend I turned it into a 24/7 home server that blocks ads for every d
 ## Before and after
 
 <p align="center">
-  <img src="02-before-mountain-lion.jpg" width="45%" alt="Before: OS X Mountain Lion">
-  <img src="03-casaos-dashboard.jpg" width="45%" alt="After: CasaOS homelab dashboard">
+  <img src="images/02-before-mountain-lion.jpg" width="45%" alt="Before: OS X Mountain Lion">
+  <img src="images/03-casaos-dashboard.jpg" width="45%" alt="After: CasaOS homelab dashboard">
 </p>
 <p align="center"><i>Before: stuck on Mountain Lion. After: a homelab dashboard.</i></p>
 
@@ -86,9 +86,9 @@ My goal was to make this project **completely free**, so at first I deliberately
 - **Attempt 3, balenaEtcher:** once I had a USB drive, Etcher threw an error on my newer Mac.
 
 <p align="center">
-  <img src="04-fail-no-disks-found.jpg" width="32%" alt="Ubuntu installer: no disks found">
-  <img src="05-fail-debian-no-network.jpg" width="32%" alt="Debian installer: no network card detected">
-  <img src="06-fail-etcher-error.jpg" width="32%" alt="balenaEtcher error">
+  <img src="images/04-fail-no-disks-found.jpg" width="32%" alt="Ubuntu installer: no disks found">
+  <img src="images/05-fail-debian-no-network.jpg" width="32%" alt="Debian installer: no network card detected">
+  <img src="images/06-fail-etcher-error.jpg" width="32%" alt="balenaEtcher error">
 </p>
 
 After a few dead ends, I decided $10 was worth it. **What worked:** a USB drive written with **Rufus** (GPT, DD mode). The installer got internet through **iPhone USB tethering**, and I installed to the full Apple SSD with LVM and OpenSSH enabled. Afterward I grew the volume to use the whole disk (Ubuntu only uses about 100 GB by default):
@@ -98,7 +98,7 @@ sudo lvextend -r -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 ```
 
 <p align="center">
-  <img src="07-rufus-usb.jpg" width="50%" alt="Rufus writing the Ubuntu Server USB">
+  <img src="images/07-rufus-usb.jpg" width="50%" alt="Rufus writing the Ubuntu Server USB">
 </p>
 
 ### 2. Making 2013 Wi‑Fi work
@@ -109,8 +109,8 @@ sudo lvextend -r -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 - **Troubleshooting:** the interface stayed `NO-CARRIER / DORMANT`. `journalctl` showed `wpa_supplicant` scanning but never joining, which turned out to be a typo in the passphrase. Once fixed, it got an IP.
 
 <p align="center">
-  <img src="08-wifi-driver-error.jpg" width="45%" alt="Boot log: b43 driver fails on the Broadcom card">
-  <img src="09-wifi-connected.jpg" width="45%" alt="Wi-Fi connected with an IP address">
+  <img src="images/08-wifi-driver-error.jpg" width="45%" alt="Boot log: b43 driver fails on the Broadcom card">
+  <img src="images/09-wifi-connected.jpg" width="45%" alt="Wi-Fi connected with an IP address">
 </p>
 
 ### 3. Turning a laptop into a server
@@ -120,7 +120,7 @@ sudo lvextend -r -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 - **Troubleshooting:** when the server "went offline," I read `/sys/class/power_supply/ADP1/online` and got `0`. It was a loose MagSafe plug, and the battery (61%) had kept the server alive the whole time. After reseating it, the value was back to `1`.
 
 <p align="center">
-  <img src="10-magsafe-check.jpg" width="50%" alt="Checking AC power from sysfs">
+  <img src="images/10-magsafe-check.jpg" width="50%" alt="Checking AC power from sysfs">
 </p>
 
 ### 4. Remote access with Tailscale
@@ -128,7 +128,7 @@ sudo lvextend -r -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 My ISP's router doesn't support DHCP reservations, so the server's local IP could change. Tailscale gives it a permanent `100.x` address plus encrypted access from anywhere, even from my phone.
 
 <p align="center">
-  <img src="11-ssh-from-iphone.jpg" width="30%" alt="SSH into the server from my iPhone over Tailscale">
+  <img src="images/11-ssh-from-iphone.jpg" width="30%" alt="SSH into the server from my iPhone over Tailscale">
 </p>
 
 ### 5. Apps with CasaOS and Docker
@@ -136,8 +136,8 @@ My ISP's router doesn't support DHCP reservations, so the server's local IP coul
 A bare-metal Pi-hole install kept hanging on dependencies, so I switched to **CasaOS** for one-click Docker apps.
 
 <p align="center">
-  <img src="12-pihole-stuck.png" width="45%" alt="Pi-hole installer hanging">
-  <img src="13-casaos-app-store.jpg" width="45%" alt="CasaOS App Store with 600+ apps">
+  <img src="images/12-pihole-stuck.png" width="45%" alt="Pi-hole installer hanging">
+  <img src="images/13-casaos-app-store.jpg" width="45%" alt="CasaOS App Store with 600+ apps">
 </p>
 
 **Troubleshooting along the way:**
@@ -154,7 +154,7 @@ A bare-metal Pi-hole install kept hanging on dependencies, so I switched to **Ca
 
 Querying AdGuard directly for a known ad domain returns `0.0.0.0`, so it's blocked:
 
-![nslookup through AdGuard returns 0.0.0.0](14-adguard-blocking.png)
+![nslookup through AdGuard returns 0.0.0.0](images/14-adguard-blocking.png)
 
 From a device on Tailscale, the ad domain doesn't resolve at all while normal sites load fine:
 
