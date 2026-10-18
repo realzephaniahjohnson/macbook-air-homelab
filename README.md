@@ -171,10 +171,3 @@ Reply from ...: time=30ms
 Linux server administration · Linux drivers and kernel modules (DKMS) · Netplan and Wi‑Fi configuration · DNS and DNS troubleshooting · Docker networking · VPN and mesh networking · Host firewalls (UFW) · Service monitoring and alerting · Log analysis with `journalctl`
 
 And the bigger lesson: **check the drawer before you buy new hardware.** Plenty of "obsolete" devices are one OS install away from being useful again.
-
-## Next steps
-
-- [ ] SSH key authentication and disable password login
-- [ ] Automated backups of app data
-- [ ] External drive for Jellyfin media storage
-- [ ] Analyze AdGuard query logs for tracker and device behavior
